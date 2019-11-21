@@ -17,3 +17,18 @@ export function sprintf(format: string, ...args: string[]) {
 export function zeroPadding(value: number | string, length: number): string {
   return ('0'.repeat(length) + value).slice(-length);
 }
+
+/**
+ * ランダム文字列生成
+ * ユニークであることは保証しない
+ *
+ * @param length
+ */
+private randomStr(length = 32) {
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    const random = (Math.random() * 16) | 0;
+    result += (i === 12 ? 4 : (i === 16 ? (random & 3) | 8 : random)).toString(16);
+  }
+  return btoa(result);
+}
